@@ -1,0 +1,47 @@
+.sustainability-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
+  background-color: #f4f4f4;
+}
+
+.sustainability-item {
+  max-width: 300px;
+  text-align: center;
+  opacity: 0; /* Inicialmente invisível */
+  transform: translateY(50px); /* Posição inicial para o efeito slide-up */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Suavização da transição */
+}
+
+/* Animação slide-up quando a classe 'animate' for adicionada */
+.animate .sustainability-item {
+  opacity: 1; /* Fica visível */
+  transform: translateY(0); /* Volta para a posição final */
+}
+
+.sustainability-item:nth-child(1) {
+  transition-delay: 0.2s;
+}
+
+.sustainability-item:nth-child(2) {
+  transition-delay: 0.4s;
+}
+
+.sustainability-item:nth-child(3) {
+  transition-delay: 0.6s;
+}
+
+.sustainability-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+.sustainability-item h2 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+}
+
+.sustainability-item p {
+  color: #555;
+}

@@ -1,0 +1,75 @@
+/* PrivacyPolicyPage.css */
+
+/* Fundo da Página Completa */
+body {
+    background-color: #e0f2f1; /* Cor de fundo suave para toda a página */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.privacy-policy-page {
+    padding: 50px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.8;
+    background-color: rgba(247, 253, 249, 0.9); /* Transparência para efeito de vidro */
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.privacy-policy-page.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.privacy-policy-page h1 {
+    font-size: 36px;
+    color: #2e7d32;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.privacy-policy-page h2 {
+    font-size: 24px;
+    color: #2e7d32;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #c8e6c9;
+    padding-bottom: 5px;
+}
+
+.privacy-policy-page p,
+.privacy-policy-page ul {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: justify;
+    color: #555;
+}
+
+.privacy-policy-page ul {
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.privacy-policy-page ul li {
+    margin-bottom: 10px;
+}
+
+.privacy-policy-page p:last-of-type {
+    margin-bottom: 0;
+}
+
+.privacy-policy-page .update-date {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 40px;
+    text-align: center;
+    display: block;
+}

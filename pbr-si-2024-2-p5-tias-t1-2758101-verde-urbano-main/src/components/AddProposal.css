@@ -1,0 +1,306 @@
+/* Container principal */
+.add-proposal-container {
+    padding: 50px;
+    text-align: center;
+    max-width: 1100px;
+    min-width: 1100px;
+    /* Ajuste para um layout mais largo */
+    margin: 0 auto;
+}
+
+/* Header com ícone, título e subtítulo */
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Container principal para layout de duas colunas */
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.add-proposal-icon {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.title-container {
+    text-align: left;
+}
+
+.add-proposal-title {
+    font-size: 36px;
+    color: #2e7d32;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.add-proposal-subtitle {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* Formulário de proposta */
+.proposal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.file-input-label:active {
+    background: #1b5e20;
+    transform: scale(1);
+}
+
+/* Botão para escolher imagem */
+.file-input-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.file-input-label {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid #34c759;
+    background: linear-gradient(45deg, #34c759, #2fa348, #28a745, #17a2b8);
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-align: center;
+    overflow: hidden;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.file-input-label:hover {
+    background: white;
+    color: #34c759;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+/* Efeito de gradiente animado */
+.file-input::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: white;
+    z-index: -1;
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    border-radius: 10px;
+}
+
+/* Ocultar o input de arquivo para exibir apenas o label */
+.file-input {
+    display: none;
+}
+
+/* Pré-visualização da imagem em coluna esquerda */
+.image-preview-container {
+    flex: 1;
+    border: 2px solid #34c759;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Imagem de pré-visualização */
+.image-preview-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Coluna dos campos de entrada */
+.form-container {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    /* Define a largura máxima para o formulário */
+}
+
+/* Campos de entrada de texto */
+.text-input,
+.textarea-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.textarea-input {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Estilo para o botão de envio */
+.submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    max-width: 600px;
+    width: 100%;
+    color: white;
+    border: 2px solid #34c759;
+    background: linear-gradient(45deg, #34c759, #2fa348, #28a745, #17a2b8);
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.submit-button:hover,
+.submit-button:focus,
+.submit-button:active {
+    background: white;
+    color: #34c759;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.submit-button:disabled {
+    background-color: #ffffff;
+    cursor: not-allowed;
+}
+
+.submit-button:hover:enabled {
+    background: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Conteúdo do Modal */
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    /* Increase width to fill more screen area */
+    max-width: 600px;
+    /* Set a max-width for very large screens */
+    text-align: center;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+    animation: scaleIn 0.3s ease;
+}
+
+/* Image Preview */
+.modal-image-preview {
+    width: 50%;
+    height: auto;
+    max-height: 500px;
+    /* Allow for larger image display */
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Detalhes da Proposta no Modal */
+.modal-info {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.modal-info h3 {
+    font-size: 20px;
+    color: #2e7d32;
+    margin-bottom: 15px;
+}
+
+.modal-info p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+    margin: 5px 0;
+}
+
+
+.close-button {
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.close-button:hover {
+    background-color: #1b5e20;
+}
+
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
+
+/* Animações para títulos e ícones */
+.add-proposal-icon.animate {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.add-proposal-title.animate,
+.add-proposal-subtitle.animate {
+    opacity: 1;
+    transform: translateY(0);
+}

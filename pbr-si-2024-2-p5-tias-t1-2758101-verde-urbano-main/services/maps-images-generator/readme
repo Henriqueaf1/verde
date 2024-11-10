@@ -1,0 +1,95 @@
+## Tutorial: Como calcular os parâmetros para capturar uma área específica com o Google Maps API
+
+### Objetivo
+
+Este tutorial explica como calcular os parâmetros corretos (como `zoom`, `quantidade` e `distância entre imagens`) para capturar uma área específica utilizando o Google Maps API e armazená-la no Supabase Storage.
+
+### Passos
+
+#### 1. **Definir as coordenadas iniciais e a área total a ser capturada**
+
+Você precisa saber:
+
+- **As coordenadas iniciais** (latitude e longitude) do ponto central da área que deseja capturar.
+- **A área total** que deseja capturar em metros quadrados.
+
+#### 2. **Entender como o zoom afeta a área capturada**
+
+O nível de **zoom** na API do Google Maps determina a quantidade de área que uma imagem captura. Quanto maior o nível de zoom, menor a área coberta pela imagem, e quanto menor o zoom, maior a área capturada.
+
+A tabela abaixo mostra a **área aproximada** coberta por uma imagem de **640x640 pixels** com base no nível de zoom:
+
+| Zoom Level | Cobertura aproximada por imagem (640x640 pixels) |
+|------------|--------------------------------------------------|
+| 21         | ~100 m x 100 m                                   |
+| 20         | ~200 m x 200 m                                   |
+| 19         | ~400 m x 400 m                                   |
+| 18         | ~800 m x 800 m                                   |
+| 17         | ~512 m x 512 m                                   |
+| 16         | ~1 km x 1 km (1.000.000 m² por imagem)           |
+| 15         | ~2 km x 2 km (4.000.000 m² por imagem)           |
+| 14         | ~4 km x 4 km                                     |
+
+#### 3. **Escolher o nível de zoom adequado**
+
+Com base na **área total** que você deseja capturar, escolha um nível de zoom que cubra uma quantidade adequada de área por imagem. Por exemplo:
+
+- Para áreas pequenas, como ruas ou bairros, um **zoom 16** captura cerca de **1 km² por imagem**.
+- Para áreas maiores, como cidades, você pode usar **zoom 15** ou inferior para capturar até **4 km² por imagem**.
+
+**Exemplo**: Para capturar uma área de **1.886.475,73 m²** (aproximadamente 1,89 km²), use o **zoom 16**, que cobre aproximadamente **1 km² por imagem**.
+
+#### 4. **Calcular a quantidade de imagens necessárias**
+
+Depois de escolher o nível de zoom, você precisará calcular quantas imagens serão necessárias para cobrir toda a área desejada. Isso pode ser feito definindo a **quantidade de imagens** (um grid de NxN).
+
+- Se você precisa capturar 1,89 km² e cada imagem cobre 1 km², um **grid de 2x2 imagens** (total de 4 imagens) será suficiente para cobrir 4 km², o que é maior que a área necessária.
+  
+- Se a área for maior ou menor, você pode ajustar o número de imagens alterando o valor da **quantidade** no grid. Por exemplo:
+  - **quantidade = 2** gera um grid de 2x2 imagens (4 imagens no total).
+  - **quantidade = 3** gera um grid de 3x3 imagens (9 imagens no total).
+
+#### 5. **Configurar a distância entre as imagens**
+
+A distância entre as imagens deve ser ajustada com base no **zoom** para evitar sobreposição ou capturar áreas maiores.
+
+Para o **zoom 16**, a distância ideal entre o centro de uma imagem e a próxima deve ser de aproximadamente **1 km**, pois cada imagem cobre 1 km².
+
+#### 6. **Exemplo de cálculo**
+
+Aqui está um exemplo prático de como calcular os parâmetros para capturar uma área de **1.886.475,73 m²** usando **zoom 16** e um grid de **2x2 imagens**.
+
+**Entrada**:
+- Área a ser capturada: **1.886.475,73 m²**.
+- Coordenadas iniciais: `-19.97920040441511, -44.019841666407736`.
+
+**Passos**:
+1. Com **zoom 16**, cada imagem cobre aproximadamente **1 km²**.
+2. A área total desejada é **1,89 km²**, então um grid de **2x2 imagens** será suficiente, capturando um total de **4 km²** (maior que a área necessária, mas sem sobreposição excessiva).
+3. A distância entre as imagens será de **1 km**.
+
+**Parâmetros JSON**:
+
+```json
+{
+  "latitude": -19.97920040441511,
+  "longitude": -44.019841666407736,
+  "bairro": "BARREIRO",
+  "zoom": 16,         // Zoom adequado para capturar 1 km² por imagem
+  "largura": 640,     // Tamanho da imagem
+  "altura": 640,      // Tamanho da imagem
+  "quantidade": 2     // Grid de 2x2 (4 imagens no total)
+}
+```
+
+Neste exemplo, você capturará 4 imagens, que cobrem aproximadamente 4 km² de área total, o que garante que a área de **1,89 km²** seja completamente coberta.
+
+#### 7. **Ajustar conforme necessário**
+
+Se a área capturada não estiver completa, você pode aumentar o **zoom** (para capturar mais detalhes) ou aumentar o **grid** (para cobrir áreas maiores). Cada ajuste depende da precisão e da quantidade de detalhes que você precisa.
+
+---
+
+### Dicas adicionais:
+- **Zoom maior (ex: 17)** captura uma área menor com mais detalhes, enquanto **zoom menor (ex: 15)** captura uma área maior, mas com menos detalhes.
+- Se você quiser capturar áreas muito grandes, considere aumentar o **quantidade** e diminuir o **zoom** para evitar capturar um grande número de imagens.
